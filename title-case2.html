@@ -16,11 +16,9 @@
 <body>
 
 	<div class="container mt-4">
-		<h1 style="text-align: center;">Sentence case demo</h1>
+		<h1 style="text-align: center;">Title Case Demo</h1>
 		<p>The following words are exempted from case change: <em>to, the, a, and, of, in, on, at, by, for, with, but,
 				or, nor</em></p>
-				<p> <button onclick="transformCardText('title')">Title Case</button>
-				<button onclick="transformCardText('sentence')">Sentence case</button> </p>
 
 		<div class="row">
 			<!-- Generate 8 cards (2 columns x 4 rows) -->
@@ -28,7 +26,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">dedicated to Mountaire</h2>
+						<h2 class="card-title title-case">dedicated to <span class="no-change">Mountaire</span></h2>
 						<p class="card-text">This is a sample paragraph for demonstration purposes.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -38,7 +36,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">a team in your corner</h2>
+						<h2 class="card-title title-case">a team in your corner</h2>
 						<p class="card-text">This is another sample paragraph to illustrate the layout.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -49,7 +47,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">customized participant communications</h2>
+						<h2 class="card-title title-case">customized participant communications</h2>
 						<p class="card-text">This is additional text content to keep the layout balanced.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -59,7 +57,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">award-winning digital experience</h2>
+						<h2 class="card-title title-case">award-winning digital experience</h2>
 						<p class="card-text">More sample content for demonstrating the Bootstrap grid.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -70,7 +68,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">service excellence and awards</h2>
+						<h2 class="card-title title-case">service excellence and awards</h2>
 						<p class="card-text">Another sample paragraph to illustrate different content.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -80,7 +78,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">read our success stories</h2>
+						<h2 class="card-title title-case">read our success stories</h2>
 						<p class="card-text">Text for a simple Bootstrap 4 card layout.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -91,7 +89,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">driving brighter outcomes</h2>
+						<h2 class="card-title title-case">driving brighter outcomes</h2>
 						<p class="card-text">Example text to showcase Bootstrap grid formatting.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -101,7 +99,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">creating a better world to live and work</h2>
+						<h2 class="card-title title-case">creating a better world to live and work</h2>
 						<p class="card-text">Final example of Bootstrap 4 content styling.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -111,7 +109,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">secure 2.0 act</h2>
+						<h2 class="card-title title-case">secure 2.0 act</h2>
 						<p class="card-text">Final example of Bootstrap 4 content styling.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -121,7 +119,7 @@
 				<div class="card">
 					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
 					<div class="card-body">
-						<h2 class="card-title sentence-case">safeguarding sensitive information</h2>
+						<h2 class="card-title title-case">safeguarding sensitive information</h2>
 						<p class="card-text">Final example of Bootstrap 4 content styling.</p>
 						<button class="btn btn-secondary">Read More</button>
 					</div>
@@ -130,133 +128,9 @@
 		</div>
 	</div>
 
-	<script>
-		// Words to exclude from title case capitalization
-		const excludedWords = new Set([
-			"a",
-			"an",
-			"and",
-			"as",
-			"at",
-			"but",
-			"by",
-			"for",
-			"in",
-			"nor",
-			"of",
-			"on",
-			"or",
-			"so",
-			"the",
-			"to",
-			"up",
-			"yet",
-		]);
-
-		// List of common proper nouns (extend as needed)
-		const properNouns = new Set([
-			"Monday",
-			"Tuesday",
-			"Wednesday",
-			"Thursday",
-			"Friday",
-			"Saturday",
-			"Sunday",
-			"January",
-			"February",
-			"March",
-			"April",
-			"May",
-			"June",
-			"July",
-			"August",
-			"September",
-			"October",
-			"November",
-			"December",
-			"Mountaire",
-			// Add more proper nouns as needed
-		]);
-
-		function toTitleCase(text) {
-			return text
-				.toLowerCase()
-				.split(" ")
-				.map((word, index) => {
-					// Always capitalize first and last word
-					if (index === 0 || index === text.split(" ").length - 1) {
-						return word.charAt(0).toUpperCase() + word.slice(1);
-					}
-					// Check if word should be excluded
-					if (excludedWords.has(word.toLowerCase())) {
-						return word.toLowerCase();
-					}
-					// Check if word is a proper noun
-					if (properNouns.has(word)) {
-						return word;
-					}
-					return word.charAt(0).toUpperCase() + word.slice(1);
-				})
-				.join(" ");
-		}
-
-		function toSentenceCase(text) {
-			const sentences = text.split(/([.!?]+\s+)/);
-			return sentences
-				.map((sentence) => {
-					if (sentence.trim().length === 0) return sentence;
-
-					return sentence
-						.split(" ")
-						.map((word, index) => {
-							// Check if word is a proper noun
-							if (properNouns.has(word)) {
-								return word;
-							}
-							// Capitalize first word of sentence
-							if (index === 0) {
-								return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-							}
-							return word.toLowerCase();
-						})
-						.join(" ");
-				})
-				.join("");
-		}
-
-		// Function to apply case transformation to Bootstrap cards
-		function transformCardText(caseType) {
-			const cards = document.querySelectorAll(".card");
-
-			cards.forEach((card) => {
-				// Transform heading
-				const heading = card.querySelector("h2");
-				if (heading) {
-					heading.textContent =
-						caseType === "title"
-							? toTitleCase(heading.textContent)
-							: toSentenceCase(heading.textContent);
-				}
-
-				// Transform paragraph
-				const paragraph = card.querySelector("p");
-				if (paragraph) {
-					paragraph.textContent =
-						caseType === "title"
-							? toTitleCase(paragraph.textContent)
-							: toSentenceCase(paragraph.textContent);
-				}
-			});
-		}
-
-		// Example usage:
-		// transformCardText('title'); // For title case
-		// transformCardText('sentence'); // For sentence case
-
-	</script>
-
-	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
+	<script src="function.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
