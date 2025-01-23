@@ -134,33 +134,36 @@
 
 		const excludeWords = ["to", "the", "a", "and", "of", "in", "on", "at", "by", "for", "with", "but", "or", "nor"];
 
-
-
 		function applySentenceCase() {
 			document.querySelectorAll("h2").forEach(h2 => {
-				let text = h2.textContent.toLowerCase();
-				h2.textContent = text.replace(/(^\w|\.\s*\w)/g, match => match.toUpperCase());
+				h2.innerHTML = h2.innerHTML
+					.split(/(<span class="no-change">.*?<\/span>|\s+)/) // Preserve spans & spaces
+					.map((word, index) => {
+						if (word.startsWith('<span')) {
+							return word; // Keep manual words unchanged
+						}
+						return word.toLowerCase().replace(/(^\w|\.\s*\w)/g, match => match.toUpperCase());
+					})
+					.join(""); // Reassemble while keeping structure intact
 			});
 		}
 
 		function applyTitleCase() {
 			document.querySelectorAll("h2").forEach(h2 => {
 				h2.innerHTML = h2.innerHTML
-					.split(/(<span.*?<\/span>|\s+)/) // Split words while keeping <span> tags and spaces
+					.split(/(<span class="no-change">.*?<\/span>|\s+)/) // Preserve spans & spaces
 					.map((word, index) => {
-						// Ignore anything inside <span class="no-change">
 						if (word.startsWith('<span')) {
-							return word; // Return span as-is
+							return word; // Keep manual words unchanged
 						}
 
-						let lowerWord = word.trim().toLowerCase(); // Normalize for lookup
+						let lowerWord = word.toLowerCase().trim(); // Normalize for lookup
 
-						// Apply title case rules for non-excluded words
 						return (index === 0 || !excludeWords.includes(lowerWord))
 							? lowerWord.charAt(0).toUpperCase() + lowerWord.slice(1)
-							: lowerWord; // Keep excluded words lowercase
+							: lowerWord;
 					})
-					.join(""); // Correctly rejoin words while preserving spaces
+					.join(""); // Reassemble while keeping structure intact
 			});
 		}
 
@@ -175,7 +178,6 @@
 
 		// Ensure Sentence Case is applied on page load
 		document.addEventListener("DOMContentLoaded", applySentenceCase);
-
 		document.getElementById("toggleCaseBtn").addEventListener("click", toggleCase);
 	</script>
 
