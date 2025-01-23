@@ -146,21 +146,21 @@
 		function applyTitleCase() {
 			document.querySelectorAll("h2").forEach(h2 => {
 				h2.innerHTML = h2.innerHTML
-					.split(/(<span.*?<\/span>|\s+)/) // Split words but keep HTML tags intact
+					.split(/(<span.*?<\/span>|\s+)/) // Split words while keeping <span> tags and spaces
 					.map((word, index) => {
 						// Ignore anything inside <span class="no-change">
 						if (word.startsWith('<span')) {
-							return word; // Return the span as-is
+							return word; // Return span as-is
 						}
 
-						let lowerWord = word.toLowerCase().trim(); // Normalize for lookup
+						let lowerWord = word.trim().toLowerCase(); // Normalize for lookup
 
 						// Apply title case rules for non-excluded words
 						return (index === 0 || !excludeWords.includes(lowerWord))
 							? lowerWord.charAt(0).toUpperCase() + lowerWord.slice(1)
 							: lowerWord; // Keep excluded words lowercase
 					})
-					.join(""); // Reassemble the sentence while keeping HTML intact
+					.join(""); // Correctly rejoin words while preserving spaces
 			});
 		}
 
