@@ -155,22 +155,24 @@
 
 		function applyTitleCase() {
 			document.querySelectorAll("h2").forEach(h2 => {
-				let text = h2.textContent.toLowerCase();
+				let text = h2.textContent.toLowerCase(); // Normalize to lowercase
 
 				h2.textContent = text
 					.split(" ") // Split words
 					.map((word, index) => {
+						let lowerWord = word.toLowerCase(); // Ensure dictionary lookup is case-insensitive
+
 						// Check if the word is in the properNouns dictionary
-						if (properNouns[word]) {
-							return properNouns[word]; // Use correct capitalization
+						if (properNouns[lowerWord]) {
+							return properNouns[lowerWord]; // Use correct capitalization
 						}
 
 						// Apply title case rules
-						return (index === 0 || !excludeWords.includes(word))
+						return (index === 0 || !excludeWords.includes(lowerWord))
 							? word.split("-") // Handle hyphenated words
 								.map(part => part.charAt(0).toUpperCase() + part.slice(1))
 								.join("-")
-							: word;
+							: lowerWord; // Keep excluded words lowercase
 					})
 					.join(" ");
 			});
