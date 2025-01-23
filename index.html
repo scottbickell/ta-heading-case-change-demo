@@ -16,8 +16,9 @@
 <body>
 
 	<div class="container mt-4">
-	<h1 style="text-align: center;">Automagically change capitalization</h1>
-		<p>The following words are exempted from case change: <em>to, the, a, and, of, in, on, at, by, for, with, but, or, nor</em></p>
+		<h1 style="text-align: center;">Automagically change capitalization</h1>
+		<p>The following words are exempted from case change: <em>to, the, a, and, of, in, on, at, by, for, with, but,
+				or, nor</em></p>
 		<button id="toggleCaseBtn" class="btn btn-primary mb-4">Toggle Heading Case</button>
 
 		<div class="row">
@@ -171,13 +172,16 @@
 
 		function applyTitleCase() {
 			document.querySelectorAll("h2").forEach(h2 => {
-				let text = h2.textContent.toLowerCase();
+				let text = h2.textContent.toLowerCase(); // Convert to lowercase for consistency
+
 				h2.textContent = text
-					.split(" ")
+					.split(" ") // Split into individual words
 					.map((word, index) =>
 						(index === 0 || !excludeWords.includes(word))
-							? word.charAt(0).toUpperCase() + word.slice(1)
-							: word
+							? word.split("-") // Handle hyphenated words
+								.map(part => part.charAt(0).toUpperCase() + part.slice(1))
+								.join("-")
+							: word // Keep excluded words in lowercase
 					)
 					.join(" ");
 			});
