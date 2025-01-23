@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bootstrap 4 Grid with Case Toggle</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		.card {
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container mt-4">
+		<button id="toggleCaseBtn" class="btn btn-primary mb-4">Toggle Case</button>
+
+		<div class="row">
+			<!-- Generate 8 cards (2 columns x 4 rows) -->
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the first heading</h2>
+						<p class="card-text">This is a sample paragraph for demonstration purposes.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the second heading</h2>
+						<p class="card-text">This is another sample paragraph to illustrate the layout.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the third heading</h2>
+						<p class="card-text">This is additional text content to keep the layout balanced.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the fourth heading</h2>
+						<p class="card-text">More sample content for demonstrating the Bootstrap grid.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the fifth heading</h2>
+						<p class="card-text">Another sample paragraph to illustrate different content.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the sixth heading</h2>
+						<p class="card-text">Text for a simple Bootstrap 4 card layout.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the seventh heading</h2>
+						<p class="card-text">Example text to showcase Bootstrap grid formatting.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card">
+					<img src="https://placehold.co/300x150" class="card-img-top" alt="Placeholder Image">
+					<div class="card-body">
+						<h2 class="card-title">this is the eighth heading</h2>
+						<p class="card-text">Final example of Bootstrap 4 content styling.</p>
+						<button class="btn btn-secondary">Read More</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// let isTitleCase = false; // Toggle state
+
+		// const excludeWords = ["to", "the", "a", "and", "of", "in", "on", "at", "by", "for", "with", "but", "or", "nor"];
+
+		// function toggleCase() {
+		// 	document.querySelectorAll("h2").forEach(h2 => {
+		// 		let text = h2.textContent.toLowerCase(); // Start with lowercase
+
+		// 		if (isTitleCase) {
+		// 			// Convert to sentence case
+		// 			h2.textContent = text.replace(/(^\w|\.\s*\w)/g, match => match.toUpperCase());
+		// 		} else {
+		// 			// Convert to title case
+		// 			h2.textContent = text
+		// 				.split(" ")
+		// 				.map((word, index) =>
+		// 					(index === 0 || !excludeWords.includes(word))
+		// 						? word.charAt(0).toUpperCase() + word.slice(1)
+		// 						: word
+		// 				)
+		// 				.join(" ");
+		// 		}
+		// 	});
+
+		// 	isTitleCase = !isTitleCase; // Toggle state
+		// }
+
+		// document.getElementById("toggleCaseBtn").addEventListener("click", toggleCase);
+
+		let isTitleCase = false; // Toggle state
+
+		const excludeWords = ["to", "the", "a", "and", "of", "in", "on", "at", "by", "for", "with", "but", "or", "nor"];
+
+		function applySentenceCase() {
+			document.querySelectorAll("h2").forEach(h2 => {
+				let text = h2.textContent.toLowerCase();
+				h2.textContent = text.replace(/(^\w|\.\s*\w)/g, match => match.toUpperCase());
+			});
+		}
+
+		function applyTitleCase() {
+			document.querySelectorAll("h2").forEach(h2 => {
+				let text = h2.textContent.toLowerCase();
+				h2.textContent = text
+					.split(" ")
+					.map((word, index) =>
+						(index === 0 || !excludeWords.includes(word))
+							? word.charAt(0).toUpperCase() + word.slice(1)
+							: word
+					)
+					.join(" ");
+			});
+		}
+
+		function toggleCase() {
+			if (isTitleCase) {
+				applySentenceCase();
+			} else {
+				applyTitleCase();
+			}
+			isTitleCase = !isTitleCase;
+		}
+
+		// Ensure first letter is always capitalized on page load
+		document.addEventListener("DOMContentLoaded", applySentenceCase);
+
+		document.getElementById("toggleCaseBtn").addEventListener("click", toggleCase);
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
