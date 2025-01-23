@@ -2,6 +2,7 @@ const excludeWords = ["to", "the", "a", "and", "of", "in", "on", "at", "by", "fo
 
 // Add proper nouns here
 const properNouns = {
+    "mountaire": "Mountaire"
     "javascript": "JavaScript",
     "html": "HTML",
     "css": "CSS",
