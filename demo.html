@@ -19,8 +19,8 @@
 		<h1 style="text-align: center;">Sentence case demo</h1>
 		<p>The following words are exempted from case change: <em>to, the, a, and, of, in, on, at, by, for, with, but,
 				or, nor</em></p>
-		<p> <button onclick="transformCardText('title')">Title Case</button>
-			<button onclick="transformCardText('sentence')">Sentence case</button>
+		<p> <button onclick="transformAllHeadings('title')">Title Case</button>
+			<button onclick="transformAllHeadings('sentence')">Sentence Case</button>
 		</p>
 
 		<div class="row">
@@ -132,81 +132,89 @@
 	</div>
 
 	<script>
-		// Add mutation observer to watch for class changes
-		const observer = new MutationObserver((mutations) => {
-			mutations.forEach((mutation) => {
-				if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-					const element = mutation.target;
-					if (element.classList.contains('title-case')) {
-						element.textContent = toTitleCase(element.textContent);
-					} else if (element.classList.contains('sentence-case')) {
-						element.textContent = toSentenceCase(element.textContent);
-					}
-				}
-			});
-		});
+		// Function to transform all H2s
+function transformAllHeadings(caseType) {
+  document.querySelectorAll('h2').forEach(h2 => {
+    h2.classList.remove('title-case', 'sentence-case');
+    h2.classList.add(`${caseType}-case`);
+  });
+}
 
-		// Start observing all H2 elements
-		document.querySelectorAll('h2').forEach(h2 => {
-			observer.observe(h2, { attributes: true });
+// Add mutation observer to watch for class changes
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      const element = mutation.target;
+      if (element.classList.contains('title-case')) {
+        element.textContent = toTitleCase(element.textContent);
+      } else if (element.classList.contains('sentence-case')) {
+        element.textContent = toSentenceCase(element.textContent);
+      }
+    }
+  });
+});
 
-			// Initial transform based on existing classes
-			if (h2.classList.contains('title-case')) {
-				h2.textContent = toTitleCase(h2.textContent);
-			} else if (h2.classList.contains('sentence-case')) {
-				h2.textContent = toSentenceCase(h2.textContent);
-			}
-		});
+// Start observing all H2 elements
+document.querySelectorAll('h2').forEach(h2 => {
+  observer.observe(h2, { attributes: true });
+  
+  // Initial transform based on existing classes
+  if (h2.classList.contains('title-case')) {
+    h2.textContent = toTitleCase(h2.textContent);
+  } else if (h2.classList.contains('sentence-case')) {
+    h2.textContent = toSentenceCase(h2.textContent);
+  }
+});
 
-		// Helper functions remain the same as before
-		const excludedWords = new Set([
-			'a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'nor',
-			'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'
-		]);
+// Helper functions remain the same as before
+const excludedWords = new Set([
+  'a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'in', 'nor',
+  'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet'
+]);
 
-		// Words to preserve exact casing
-		const preserveCasing = new Set([
-			'Award-Winning',
-			// Add more words here
-		]);
+// Words to preserve exact casing
+const preserveCasing = new Set([
+  'Award-Winning',
+  // Add more words here
+]);
 
-		const properNouns = new Set([
-			'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
-			'January', 'February', 'March', 'April', 'May', 'June', 'July',
-			'August', 'September', 'October', 'November', 'December'
-		]);
+const properNouns = new Set([
+  'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+  'January', 'February', 'March', 'April', 'May', 'June', 'July',
+  'August', 'September', 'October', 'November', 'December'
+]);
 
-		function toTitleCase(text) {
-			return text.toLowerCase().split(' ').map((word, index) => {
-				if (index === 0 || index === text.split(' ').length - 1) {
-					return word.charAt(0).toUpperCase() + word.slice(1);
-				}
-				if (excludedWords.has(word.toLowerCase())) {
-					return word.toLowerCase();
-				}
-				if (preserveCasing.has(word) || properNouns.has(word)) {
-					return word;
-				}
-				return word.charAt(0).toUpperCase() + word.slice(1);
-			}).join(' ');
-		}
+function toTitleCase(text) {
+  return text.toLowerCase().split(' ').map((word, index) => {
+    if (index === 0 || index === text.split(' ').length - 1) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+    if (excludedWords.has(word.toLowerCase())) {
+      return word.toLowerCase();
+    }
+    if (preserveCasing.has(word) || properNouns.has(word)) {
+      return word;
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join(' ');
+}
 
-		function toSentenceCase(text) {
-			const sentences = text.split(/([.!?]+\s+)/);
-			return sentences.map(sentence => {
-				if (sentence.trim().length === 0) return sentence;
-
-				return sentence.split(' ').map((word, index) => {
-					if (properNouns.has(word)) {
-						return word;
-					}
-					if (index === 0) {
-						return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-					}
-					return word.toLowerCase();
-				}).join(' ');
-			}).join('');
-		}
+function toSentenceCase(text) {
+  const sentences = text.split(/([.!?]+\s+)/);
+  return sentences.map(sentence => {
+    if (sentence.trim().length === 0) return sentence;
+    
+    return sentence.split(' ').map((word, index) => {
+      if (properNouns.has(word)) {
+        return word;
+      }
+      if (index === 0) {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      }
+      return word.toLowerCase();
+    }).join(' ');
+  }).join('');
+}
 	</script>
 
 	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
