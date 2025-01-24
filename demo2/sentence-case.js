@@ -5,6 +5,8 @@ function applySentenceCase() {
         
         // Handle special cases first
         text = text.replace(/award-winning/gi, 'Award-winning');
+        text = text.replace(/act/gi, 'ACT');
+        text = text.replace(/mountaire/gi, 'Mountaire');
         
         // Capitalize first letter of sentences
         text = text.charAt(0).toUpperCase() + text.slice(1);

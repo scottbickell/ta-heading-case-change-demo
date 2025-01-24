@@ -1,12 +1,13 @@
 // title-case.js
 function applyTitleCase() {
     document.querySelectorAll('h2').forEach(h2 => {
-        const excludedWords = ['a', 'an', 'the', 'in', 'on', 'at', 'for', 'to', 'of', 'with', 'by'];
+        const excludedWords = ['a', 'an', 'the', 'in', 'on', 'at', 'for', 'to', 'of', 'with', 'by', 'and'];
         
         let text = h2.textContent.toLowerCase();
         
         // Handle special cases first
         text = text.replace(/award-winning/gi, 'Award-Winning');
+        text = text.replace(/ACT/gi, 'ACT');
         
         // Split into words and apply title case rules
         text = text.split(' ').map((word, index, array) => {
